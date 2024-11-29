@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Match Calculator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+
+  <!-- Floating Hearts (Multiple) -->
+  <div class="heart" style="top: 20%; left: 5%; animation-duration: 18s;"></div>
+  <div class="heart" style="top: 35%; left: 30%; animation-duration: 20s;"></div>
+  <div class="heart" style="top: 50%; left: 45%; animation-duration: 22s;"></div>
+  <div class="heart" style="top: 65%; left: 60%; animation-duration: 25s;"></div>
+  <div class="heart" style="top: 75%; left: 80%; animation-duration: 23s;"></div>
+
+  <!-- Loading Screen -->
+  <div id="loading" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div class="text-center animate__animated animate__fadeIn">
+      <h1 class="text-4xl font-bold text-pink-500 mb-4">💖 Love Match 💖</h1>
+      <div class="spinner-border text-pink-500" role="status"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" class="container mx-auto text-center py-16 hidden">
+    <h1 class="text-5xl font-extrabold mb-8 text-pink-400 animate__animated animate__fadeInDown">💘 Love Match Calculator 💘</h1>
+    <p class="text-lg text-gray-400 mb-6">Find out your love match percentage and feel the love!</p>
+    <div class="glass-card mx-auto p-6 rounded-xl shadow-lg max-w-md">
+      <form id="loveForm">
+        <input type="text" id="name1" class="form-control mb-4 rounded-lg shadow-md bg-transparent text-white placeholder-gray-300" placeholder="Enter Your Name" required>
+        <input type="text" id="name2" class="form-control mb-4 rounded-lg shadow-md bg-transparent text-white placeholder-gray-300" placeholder="Enter Their Name" required>
+        <button type="submit" class="btn w-full py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+          Calculate Match
+        </button>
+      </form>
+      <div id="loadingAnimation" class="flex justify-center items-center mt-5 hidden">
+        <div class="spinner-border text-pink-500" role="status"></div>
+      </div>
+      <div id="result" class="mt-5 text-3xl font-semibold hidden animate__animated">Your Love Match is: <span id="percentage"></span>% ❤️</div>
+      <div id="emoji" class="mt-5 text-4xl hidden"></div>
+      <p id="match-text" class="mt-4 text-lg text-gray-300 hidden"></p>
+      <p id="love-note" class="mt-5 text-lg text-pink-500 font-bold hidden"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p class="text-sm text-gray-400 animate__animated animate__fadeInUp">© 2024 Love Match Calculator by Udavin. All Rights Reserved. Visit <a href="https://yourwebsite.com" class="text-pink-500">yourwebsite.com</a></p>
+  </footer>
+  <script>
+        // Show loading animation and then load content
+        window.onload = () => {
+        const loadingScreen = document.getElementById("loading");
+        const mainContent = document.getElementById("main-content");
+  
+        setTimeout(() => {
+          loadingScreen.classList.add("hidden");
+          mainContent.classList.remove("hidden");
+        }, 3000);
+      };
+  
+  // Love match calculation logic
+  document.getElementById("loveForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+  
+    const loadingAnimation = document.getElementById("loadingAnimation");
+    const resultDiv = document.getElementById("result");
+    const emojiDiv = document.getElementById("emoji");
+    const matchTextDiv = document.getElementById("match-text");
+    const loveNoteDiv = document.getElementById("love-note");
+  
+    const name1 = document.getElementById("name1").value;
+    const name2 = document.getElementById("name2").value;
+  
+    loadingAnimation.classList.remove("hidden");
+    resultDiv.classList.add("hidden");
+    emojiDiv.classList.add("hidden");
+    matchTextDiv.classList.add("hidden");
+    loveNoteDiv.classList.add("hidden");
+  
+    setTimeout(() => {
+      const lovePercentage = Math.floor(Math.random() * 100) + 1;
+      loadingAnimation.classList.add("hidden");
+      resultDiv.classList.remove("hidden");
+      emojiDiv.classList.remove("hidden");
+      matchTextDiv.classList.remove("hidden");
+  
+      document.getElementById("percentage").innerText = lovePercentage;
+  
+      // Random love note collection
+      const loveNotes = [
+      `${name1}, your connection with ${name2} is unique and special. Cherish every moment together! 💖`,
+      `Together, ${name1} and ${name2}, you make magic happen. Let love lead the way! ✨`,
+      `No matter where life takes you, ${name1} and ${name2}, always hold onto each other’s hearts. ❤️`,
+      `Love is a journey, and you two, ${name1} and ${name2}, are on the best adventure! 🌍💑`,
+      `${name1}, you and ${name2} are a perfect blend of love and happiness! 🌸💫`,
+      `Together, ${name1} and ${name2}, you’re stronger than anything that comes your way! 💪💞`,
+      `Every love story is beautiful, but yours, ${name1} and ${name2}, is my favorite! 📖💘`,
+      `With love, ${name1} and ${name2}, everything feels possible. Keep building your dreams together! 🏰💑`,
+      `There’s no one better for ${name2} than you, ${name1}. Your love is truly special! 💕🌟`,
+      `${name1} and ${name2}, you are both a perfect match – keep shining together! 🌟💖`,
+      `Love grows in the little things, and you two, ${name1} and ${name2}, have mastered them! 🌷💝`,
+      `Every moment with you, ${name1} and ${name2}, is like a dream come true. 💫💞`,
+      `${name1}, you and ${name2} make the world a better place with your love! 🌍❤️`,
+      `Together, ${name1} and ${name2}, you make each other’s lives brighter. 🌟💑`,
+      `The love between ${name1} and ${name2} is endless, just like the stars in the sky. 🌌✨`,
+      `There’s nothing that can break the bond you share, ${name1} and ${name2}. 💪❤️`,
+      `${name1} and ${name2}, you two are an inspiration to all who believe in love! 🌹💘`,
+      `The love between ${name1} and ${name2} is pure magic! Keep creating your fairy tale. ✨🏰`,
+      `${name1}, you and ${name2} share a love that can conquer the world. 🌎💖`,
+      `Your love story is one for the ages, ${name1} and ${name2}. 📚💞`,
+      `Every laugh, every hug, every kiss between ${name1} and ${name2} is pure bliss! 😘💑`,
+      `No one can love you like ${name2} loves you, ${name1}. You are their forever! 💕🔒`,
+      `${name1}, with ${name2} by your side, there’s nothing you can’t do! 💪💖`,
+      `You and ${name2} together are like a perfect symphony – in harmony and beautiful forever! 🎶❤️`,
+      `The love between ${name1} and ${name2} is the sweetest melody. Keep playing your song. 🎵💘`,
+      `${name1}, you're the missing piece of ${name2}'s heart. 💖🔐`,
+      `Together, ${name1} and ${name2}, you’re building a lifetime of memories. 🌟💑`,
+      `${name1}, with ${name2}, every day is an adventure worth taking! 🌄💖`,
+      `${name1} and ${name2}, you make life feel like a beautiful dream come true. 💭💫`,
+      `Your love, ${name1} and ${name2}, is a journey that will never end. Keep walking hand in hand. 🏞️💖`,
+      `Every love story is beautiful, but ${name1} and ${name2}, yours is the most magical! ✨💞`,
+      `${name1} and ${name2}, together you’ve found a love that’s meant to last forever! 💞🔗`,
+      `You two are an example of how beautiful love can be, ${name1} and ${name2}. 🌷💝`,
+      `${name1}, your love for ${name2} is something truly rare and special. Hold onto it forever! 💖`,
+      `Your bond, ${name1} and ${name2}, is a love story written in the stars. 🌟💑`,
+      `${name1} and ${name2}, your love shines brighter than any star in the sky! ✨🌙`,
+      `Love is the key to happiness, and ${name1} and ${name2} hold that key. 🔑💖`,
+      `${name1}, the world is a better place because of the love you and ${name2} share. 🌍💘`,
+      `${name1} and ${name2}, together you bring warmth to everyone around you. 🌞❤️`,
+      `${name1}, you and ${name2} create a love story more beautiful than any fairy tale! 📖💖`,
+      `${name1}, when you're with ${name2}, time stands still and love flows endlessly. 💫⏳`,
+      `${name1} and ${name2}, your love is a masterpiece – one painted with happiness and devotion. 🎨💘`,
+      `${name1}, with ${name2} by your side, every day is filled with love and laughter! 😂💞`,
+      `You and ${name2}, ${name1}, are the definition of true love and happiness! 🌸💫`,
+      `The love between ${name1} and ${name2} is like the strongest tree, deeply rooted and unshakable. 🌳❤️`,
+      `You and ${name2} are two halves of a whole, and together you make one perfect love story. 💕✨`,
+      `${name1}, your love for ${name2} is like a beacon of light, guiding the way. 🌟💖`,
+      `Every moment spent with ${name2} is precious, ${name1}, and every day is a gift! 🎁💑`,
+      `${name1} and ${name2}, your love grows with each passing day, just like a beautiful flower. 🌸💞`,
+      `${name1}, your love for ${name2} is like a warm hug that lasts forever. 🤗💖`,
+      `${name1}, with ${name2}, love is not just a feeling; it’s a beautiful way of life. 🌹💫`,
+      `${name1}, with ${name2} by your side, you have everything you need for a lifetime of happiness. 💍💖`,
+      `${name1}, your heart beats with love for ${name2}, and that love makes the world shine brighter! 🌟💞`,
+      `Together, ${name1} and ${name2}, you create a love that’s as rare as a shooting star. 🌠❤️`,
+      `${name1} and ${name2}, love is the language you speak, and it’s heard around the world. 🌍💖`,
+      `With every smile, every glance, every touch, ${name1} and ${name2} create their own fairy tale. ✨💑`,
+      `Your love, ${name1} and ${name2}, is like the sweetest song that never ends. 🎶💖`,
+      `You and ${name2}, ${name1}, are a perfect team, building a future filled with love. 🏗️💖`,
+      `Every day is a reminder of how lucky ${name1} and ${name2} are to have each other. 🌸💑`,
+      `${name1} and ${name2}, love is the answer to every question, and you two have found it. ❤️💫`,
+      `${name1}, with ${name2} by your side, love is the easiest thing to do. 💖💞`,
+      `Your love is like a river, flowing smoothly and beautifully, ${name1} and ${name2}. 🌊❤️`,
+      `${name1} and ${name2}, your love is a beacon of hope in this world. 🌟💑`,
+      `${name1}, with ${name2}, love is always in the air, and it’s so sweet! 🍃💖`,
+      `Every day with ${name2}, ${name1}, is a reminder of how beautiful life can be. 🌹💫`,
+      `${name1}, you and ${name2} are proof that love can change the world. 💪❤️`,
+      `${name1}, every second with ${name2} is a treasure I hope you never take for granted. ⏳💖`,
+      `${name1}, with ${name2} by your side, life feels like a never-ending celebration! 🎉💞`,
+      `${name1} and ${name2}, your love has a power that nothing can break. 🔐💘`,
+      `${name1} and ${name2}, you’re a perfect match made in love and happiness. 💖✨`,
+      `${name1}, your love for ${name2} is the greatest gift you both can give. 🎁💑`,
+      `Together, ${name1} and ${name2}, you’ll create a lifetime of memories filled with love! 📸💘`,
+      `${name1}, your love for ${name2} is the most beautiful thing in the world. 🌎❤️`,
+      `${name1}, with ${name2}, you’ve found a love that will last through every storm. 🌧️💖`,
+      `You and ${name2}, ${name1}, have built a love that no one can take away. 🔐💞`,
+      `Together, ${name1} and ${name2}, love is not just an emotion – it’s your reality. 🌟💖`,
+      `${name1} and ${name2}, your love story will inspire generations to come. 📖💘`,
+      `${name1}, every time you look at ${name2}, remember that your love is forever. 💖🔒`,
+      `${name1} and ${name2}, your love is one of a kind and worth cherishing every day. 🌸💑`,
+      `${name1}, with ${name2}, you’ve found someone who will love you endlessly. 💞💖`,
+      `${name1} and ${name2}, together you create a love that can light up the world. 🌟❤️`,
+      `${name1}, you and ${name2} are a beautiful example of true love! 💖🌟`,
+      `${name1} and ${name2}, your love is a journey that will never end. Keep writing your beautiful story! 📚💘`,
+      `${name1}, your love for ${name2} is the best thing about your life. Never let it go! 💖✨`,
+      `${name1} and ${name2}, you two were made for each other, and nothing can change that! 💑💞`,
+      `${name1}, your love for ${name2} shines brighter than the stars! 🌟💖`,
+      `${name1} and ${name2}, your love fills the world with magic and beauty. 🌍💘`,
+      `${name1}, with ${name2} by your side, love is the most natural thing in the world. ❤️💖`
+  ];
+  
+  
+      // Randomly select a love note
+      const randomLoveNote = loveNotes[Math.floor(Math.random() * loveNotes.length)];
+  
+      // Display result
+      if (lovePercentage > 75) {
+        emojiDiv.innerHTML = "💖";
+        matchTextDiv.innerHTML = `${name1} & ${name2} are a perfect match! 💕`;
+      } else if (lovePercentage > 50) {
+        emojiDiv.innerHTML = "💘";
+        matchTextDiv.innerHTML = `${name1} & ${name2} are quite a good match! 💞`;
+      } else {
+        emojiDiv.innerHTML = "💔";
+        matchTextDiv.innerHTML = `${name1} & ${name2} might need some work, but there’s potential! 💔`;
+      }
+  
+      // Show the love note
+      loveNoteDiv.innerHTML = `${name1}, here’s a special love note for you and ${name2}💖<br><br>${randomLoveNote}`;
+      loveNoteDiv.classList.remove("hidden");
+    }, 2000);
+  });
+  
+  </script>
+</body>
+</html>

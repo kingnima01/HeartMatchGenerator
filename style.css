@@ -1,0 +1,120 @@
+    /* Full Screen Background */
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        margin: 0;
+        overflow-y: scroll; /* Enable vertical scrolling */
+        position: relative;
+        background: linear-gradient(135deg, #000000 0%, #2e2e2e 100%);
+        background-size: 400% 400%;
+        min-height: 100vh;
+      }
+  
+      /* Heart Shape */
+      .heart {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #FF4081, #E91E63);
+        transform: rotate(-45deg);
+        animation: heartAnimation 15s infinite linear;
+      }
+  
+      .heart:before,
+      .heart:after {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: inherit;
+      }
+  
+      .heart:before {
+        top: -50px;
+        left: 0;
+      }
+  
+      .heart:after {
+        left: 50px;
+        top: 0;
+      }
+  
+      @keyframes heartAnimation {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        25% { transform: translateY(-200px) rotate(90deg); }
+        50% { transform: translateY(0) rotate(180deg); }
+        75% { transform: translateY(200px) rotate(270deg); }
+        100% { transform: translateY(0) rotate(360deg); opacity: 0; }
+      }
+  
+      /* Glass Card Effect */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        padding: 2rem;
+        border-radius: 1rem;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+      }
+  
+      /* Romantic Fonts */
+      h1, h2 {
+        font-family: 'Dancing Script', cursive;
+      }
+  
+      .btn {
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+      }
+  
+      .btn:hover {
+        background-color: #ff4081;
+        transform: scale(1.1);
+      }
+  
+      /* Loading Screen Styling */
+      #loading .spinner-border {
+        width: 4rem;
+        height: 4rem;
+        border-top: 4px solid #ff4081;
+      }
+  
+      /* Footer Styling */
+      footer {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 2rem 0;
+        color: #fff;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+      }
+  
+      footer a {
+        color: #FF69B4;
+      }
+  
+      /* Main Content Container */
+      #main-content {
+        margin-bottom: 6rem; /* Make space for the fixed footer */
+        padding: 16px;
+        min-height: 80vh; /* Allow for scrolling */
+      }
+  
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        #main-content {
+          padding: 2rem;
+        }
+  
+        .text-5xl {
+          font-size: 3rem;
+        }
+      }
